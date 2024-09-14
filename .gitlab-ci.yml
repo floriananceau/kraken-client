@@ -60,7 +60,7 @@ publish:
 pages:
   stage: release
   script:
-  - make docs
+    - make docs
   artifacts:
     paths:
     - public
