@@ -1,0 +1,73 @@
+stages:
+  - test
+  - release
+
+image: python:3.12
+
+include:
+  - template: Jobs/Code-Quality.gitlab-ci.yml
+  - template: Jobs/SAST.latest.gitlab-ci.yml
+
+lint:
+  before_script:
+    - curl -LsSf https://astral.sh/uv/install.sh | sh
+    - source $HOME/.cargo/env
+  stage: test
+  script:
+    - make check
+  rules:
+    - if: $CI_MERGE_REQUEST_TITLE !~ /^Draft/
+    - if: $CI_COMMIT_TAG
+
+test:
+  before_script:
+    - curl -LsSf https://astral.sh/uv/install.sh | sh
+    - source $HOME/.cargo/env
+  stage: test
+  script:
+    - make tests
+  coverage: '/TOTAL.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+  rules:
+    - if: $CI_MERGE_REQUEST_TITLE !~ /^Draft/
+    - if: $CI_COMMIT_TAG
+
+build:
+  before_script:
+    - curl -LsSf https://astral.sh/uv/install.sh | sh
+    - source $HOME/.cargo/env
+  stage: release
+  script:
+    - make build
+  artifacts:
+    paths:
+      - dist/
+  rules:
+    - if: $CI_COMMIT_TAG
+
+publish:
+  before_script:
+    - curl -LsSf https://astral.sh/uv/install.sh | sh
+    - source $HOME/.cargo/env
+  stage: release
+  script:
+    - make publish
+  rules:
+    - if: $CI_COMMIT_TAG
+
+pages:
+  stage: release
+  script:
+  - make docs
+  artifacts:
+    paths:
+    - public
+  rules:
+    - if: $CI_COMMIT_TAG
+
+code_quality:
+  rules:
+    - if: $CI_MERGE_REQUEST_TITLE !~ /^Draft/
+
+semgrep-sast:
+  rules:
+    - if: $CI_MERGE_REQUEST_TITLE !~ /^Draft/
