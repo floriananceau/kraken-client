@@ -1,0 +1,31 @@
+[project]
+name = "kraken-client"
+version = "1.0.0"
+description = "A Python client for Kraken's public and private APIs with full HTTP response handling, authentication support (including OTP), and easy-to-use methods for making API requests."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.6.5",
+    "pytest>=8.3.3",
+    "pytest-mock>=3.14.0",
+    "pytest-env>=1.1.4",
+    "krakenex>=2.2.2",
+    "pytest-cov>=5.0.0",
+    "sphinx>=8.0.2",
+    "sphinx-rtd-theme>=0.5.1",
+]
+
+[tool.pytest.ini_options]
+env = [
+    "KRAKEN_API_KEY=euaoe",
+    "KRAKEN_API_SECRET=euaoe",
+]
