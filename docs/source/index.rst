@@ -18,6 +18,8 @@ Overview
 
 The Kraken API Client allows you to interact with Kraken's public and private API endpoints, including features such as authentication and OTP for secure private API requests.
 
+This client behave similarly to Krakenex. I was previously using it, but the raw JSON was too limiting for me. Hence this client with `requests.Response` object.
+
 Installation
 ============
 
@@ -37,10 +39,10 @@ Basic Initialization
 
 .. code-block:: python
 
-    from kraken_api import Client
+    import kraken_client
 
     # Initialize the client with your Kraken API key and secret
-    client = Client(api_key="your_api_key", api_secret="your_api_secret")
+    client = kraken_client.Client(api_key="your_api_key", api_secret="your_api_secret")
 
     # Example public API call to get the server time
     response = client.public('Time')
@@ -57,10 +59,10 @@ If you have two-factor authentication enabled, you can include the OTP in the cl
 
 .. code-block:: python
 
-    from kraken_api import Client
+    import kraken_client
 
     # Initialize the client with your API credentials and OTP
-    client = Client(api_key="your_api_key", api_secret="your_api_secret", otp="your_otp")
+    client = kraken_client.Client(api_key="your_api_key", api_secret="your_api_secret", otp="your_otp")
 
     # Make a private API request
     response = client.private('Balance')
@@ -71,9 +73,9 @@ Fetching Account Balance
 
 .. code-block:: python
 
-    from kraken_api import Client
+    import kraken_client
 
-    client = Client(api_key="your_api_key", api_secret="your_api_secret")
+    client = kraken_client.Client(api_key="your_api_key", api_secret="your_api_secret")
     response = client.private('Balance')
 
     # Get the JSON response
@@ -85,9 +87,9 @@ Fetching Server Time
 
 .. code-block:: python
 
-    from kraken_api import Client
+    import kraken_client
 
-    client = Client()
+    client = kraken_client.Client()
     response = client.public('Time')
 
     # Print the server time

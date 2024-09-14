@@ -2,6 +2,8 @@
 
 A lightweight and simple Python client to interact with the [Kraken API](https://www.kraken.com/features/api). This client supports both public and private API calls, handling authentication and one-time passwords (OTP) for secure access to Kraken's trading platform, with full `requests.Response` object for complete flexibility.
 
+This client behave similarly to [Krakenex](https://pypi.org/project/krakenex/). I was previously using it, but the raw JSON was too limiting for me. Hence this client with `requests.Response` object.
+
 ## Installation
 
 You can only install this Kraken API client directly from Gitlab using:
@@ -14,10 +16,10 @@ You can only install this Kraken API client directly from Gitlab using:
 ### Basic Initialization
 
 ```python
-from kraken_api import Client
+import kraken_client
 
 # Initialize the client with your Kraken API key and secret
-client = Client(api_key="your_api_key", api_secret="your_api_secret")
+client = kraken_client.Client(api_key="your_api_key", api_secret="your_api_secret")
 
 # Example public API call to get the server time
 response = client.public('Time')
@@ -33,10 +35,10 @@ print(response.json())
 If you have two-factor authentication enabled, you can include the OTP in the client initialization:
 
 ```python
-from kraken_api import Client
+import kraken_client
 
 # Initialize the client with your API credentials and OTP
-client = Client(api_key="your_api_key", api_secret="your_api_secret", otp="your_otp")
+client = kraken_client.Client(api_key="your_api_key", api_secret="your_api_secret", otp="your_otp")
 
 # Make a private API request
 response = client.private('Balance')
@@ -46,9 +48,9 @@ print(response.json())
 ### Fetching Account Balance
 
 ```python
-from kraken_api import Client
+import kraken_client
 
-client = Client(api_key="your_api_key", api_secret="your_api_secret")
+client = kraken_client.Client(api_key="your_api_key", api_secret="your_api_secret")
 response = client.private('Balance')
 
 # Get the JSON response
@@ -59,9 +61,9 @@ print(f"Your balance: {balance['result']}")
 ### Fetching Server Time
 
 ```python
-from kraken_api import Client
+import kraken_client
 
-client = Client()
+client = kraken_client.Client()
 response = client.public('Time')
 
 # Print the server time
