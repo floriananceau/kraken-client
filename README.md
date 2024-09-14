@@ -6,9 +6,9 @@ This client behave similarly to [Krakenex](https://pypi.org/project/krakenex/). 
 
 ## Installation
 
-You can only install this Kraken API client directly from Gitlab using:
+You can install this Kraken API client directly from Gitlab using:
 
-`pip install --index-url https://gitlab.com/api/v4/projects/61674596/packages/pypi/simple/ kraken-client`
+`pip install git+https://gitlab.com/flrnnc-oss/kraken-client`
 
 
 ## Usage
