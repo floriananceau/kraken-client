@@ -51,6 +51,8 @@ publish:
   stage: release
   script:
     - make publish
+  needs:
+    - job: build
   artifacts:
     paths:
       - dist/
@@ -60,7 +62,7 @@ publish:
 pages:
   stage: release
   script:
-    - make docs
+    - make pages
   artifacts:
     paths:
     - public

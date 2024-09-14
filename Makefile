@@ -16,5 +16,5 @@ build:
 publish:
 	TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token uvx twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
 
-docs:
+pages:
 	uv run sphinx-build -b html docs/source/ public/
