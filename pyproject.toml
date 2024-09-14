@@ -1,9 +1,9 @@
 [project]
 name = "kraken-client"
-version = "1.0.0"
+version = "1.0.1"
 description = "A Python client for Kraken's public and private APIs with full HTTP response handling, authentication support (including OTP), and easy-to-use methods for making API requests."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.8"
 dependencies = [
     "requests>=2.32.3",
 ]

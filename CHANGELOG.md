@@ -16,8 +16,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-[tag]: url_to_tag
+[tag]: https://gitlab.com/flrnnc-oss/kraken-client/-/releases/tag
 <!-- /tag --/>
+
+<!-- 1.0.1 -->
+## [1.0.1]
+### Fixed
+* Dropped dependency from Python 3.12 to 3.8
+
+[1.0.1]: https://gitlab.com/flrnnc-oss/kraken-client/-/releases/1.0.1
+<!-- /1.0.1 -->
 
 <!-- 1.0.0 -->
 ## [1.0.0]
